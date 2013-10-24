@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Oauth</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <% unless flash.empty? %>
+  <div class="container">
+    <div class="row">
+      <div class="alert alert-warning fade in">
+        <% flash.each do |key, msg| %>
+          <p><%= msg %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+</html>

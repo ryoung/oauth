@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <%= form_for(@user, :remote => false, :html => {:class => "form-horizontal", :role => "form"}) do |f| %>
+        <% if @user.errors.any? %>
+          <div class="form-group error help-inline">
+            <div class="col-lg-offset-2 col-lg-10">
+              <h2>User is invalid</h2>
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                  <li><%= message %></li>
+               <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+
+        <% fn_errors = "" %>
+        <% fn_errors = "error" if @user.errors.messages[:first_name] %>
+        <div class="form-group <%=fn_errors%>">
+          <%= f.label :first_name, "First name", :class => "col-lg-2 control-label" %>
+          <div class="col-lg-10">
+            <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
+          </div>
+        </div>
+
+        <% ln_errors = "" %>
+        <% ln_errors = "error" if @user.errors.messages[:last_name] %>
+        <div class="form-group <%=ln_errors%>">
+          <%= f.label :last_name, "Last name", :class => "col-lg-2 control-label" %>
+          <div class="col-lg-10">
+            <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
+          </div>
+        </div>
+
+        <% email_errors = "" %>
+        <% email_errors = "error" if @user.errors.messages[:email] %>
+        <div class="form-group <%=email_errors%>">
+          <%= f.label :email, "Email address", :class => "col-lg-2 control-label" %>
+          <div class="col-lg-10">
+            <%= f.text_field :email, :class => "form-control", :placeholder => "Email address" %>
+          </div>
+        </div>
+
+        <%= f.hidden_field :provider %>
+        <%= f.hidden_field :provider_uid %>
+
+        <div class="form-group">
+          <div class="col-lg-offset-2 col-lg-10">
+            <%= f.submit :class => 'btn btn-primary edit_button' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
